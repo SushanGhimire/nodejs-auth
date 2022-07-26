@@ -55,7 +55,10 @@ router.post("/login", async (req, res) => {
     }
   }
   //creating and asigning token
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    { _id: user._id, user_type: "user" },
+    process.env.TOKEN_SECRET
+  );
   res.header("auth-token", token).send(token);
 });
 module.exports = router;
